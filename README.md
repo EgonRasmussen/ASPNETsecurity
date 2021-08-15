@@ -1,4 +1,4 @@
-# 1.Antiforgery
+# 1.Cross-SiteRequestForgeryCSRF
 
 ### Med [IgnoreAntiforgeryToken]
 1. Start projektet Bank.WebApp. Åbn DevTools.
