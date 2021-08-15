@@ -16,4 +16,4 @@
 9. Kig på *DevTools | Application *og bemærk en Cookie kaldet: `.AspNetCore.Antiforgery`. Den benyttes til at gemme en AntiforgeryToken på serveren, som er knyttet til brugerens session.
 10. Kig også på* DevTools | Elements* og find `<input>` med navnet: __RequestVerificationToken af typen Hidden. Denne værdi ændres for hver roundtrip.
 11. Serveren henter sin AntiforgeryToken værdi og sammenligner med den der postes og de skal være ens for at en Post metode vil eksekvere.
-13. Prøv at redigere i AntiforgeryToken i DevTools og lav en ny Withdraw. Nu kan der ikke Postes!
+13. Prøv at redigere i AntiforgeryToken i DevTools og lav en ny Withdraw. Nu kan der ikke Postes! 
