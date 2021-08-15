@@ -12,7 +12,7 @@ koden er blevet HTML-encodet: `<h2>&lt;script&gt;alert(&#x27;Hi!&#x27;)&lt;/scri
 - Logger ind på korrekt site, omdrigeres til en fake.
 - Tror han har fejlindtastet password og prøver igen.
 - Nu er password fisket!
-- 
+
 Ingen demo her. Vis blot koden:
 ```c#
 if(!Url.IsLocalUrl(returnUrl))
