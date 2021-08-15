@@ -1,0 +1,31 @@
+﻿@page "{restaurantId:int}"
+
+@model WebApp.Pages.Restaurants.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h2>@Model.Restaurant.Name</h2>
+
+<img src="http://apache.org/img/ASF20thAnniversary.jpg" alt="Unsecure resource"/>
+
+<div>
+    Id: @Model.Restaurant.Id
+</div>
+<div>
+    Location: @Model.Restaurant.Location
+</div>
+<div>
+    Cuisine: @Model.Restaurant.Cuisine
+</div>
+
+
+
+<a asp-page="./List" class="btn btn-info">All Restaurants</a>
+
+@section footer {
+    @if (Model.Message != null)
+    {
+        <div class="alert alert-info">@Model.Message</div>
+    }
+}

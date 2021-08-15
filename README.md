@@ -1,19 +1,22 @@
-# 1.Cross-SiteRequestForgeryCSRF
+ï»¿# 2. Cross Site Scripting (XSS)
+> [Prevent Cross-Site Scripting (XSS) in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/cross-site-scripting?view=aspnetcore-3.1)
 
-### Med [IgnoreAntiforgeryToken]
-1. Start projektet Bank.WebApp. Åbn DevTools.
-2. Log ind med følgende credentials: email: user@eucsyd.dk og pw: P@ssw0rd
-3. Åbn *DevTools | Application* og udpeg `.AspNetCore.Identity.Application Cookie`
-4. Start Bank.EvilSite ved at højre klikke på projektet og vælge:* Debug | Start New Instance*. Bemærk at den kører på port 44344.
-5. Send en email til dig selv med følgende indhold: Klik her for at se en kattekilling: https://localhost:44344/index.html
-6. Klik på linket i mailen. Browseren med Banken åben vil åbne en ny fane med et kattebillede.
-7. Refresh fanen med banken og se at din konto er blevet lænset for kr. 10 000!
+1. Skriv fÃ¸lgende i f.eks. Edit-tekstfeltet: `<script>alert('Hi!')</script>`. BemÃ¦rk at det ikke eksekveres, men blot vises. Ã…bn *View Source* i browseren og se at 
+koden er blevet HTML-encodet: `<h2>&lt;script&gt;alert(&#x27;Hi!&#x27;)&lt;/script&gt;</h2>`
+2. I List-pagen Ã¦ndres koden for restaurant-name til fÃ¸lgende: `<td>@Html.Raw(restaurant.Name)</td>`. Nï¿½r siden kÃ¸res, er det en JavaScript pop-up som vises!
 
-#### Med AntigorgeryToken aktiv
+&nbsp;
 
-8. Udkommentér attributten `[IgnoreAntiforgeryToken]` i PageModel.
-9. Gentag forsøget med en hacker mail og se at det nu ikke lykkes!
-9. Kig på *DevTools | Application *og bemærk en Cookie kaldet: `.AspNetCore.Antiforgery`. Den benyttes til at gemme en AntiforgeryToken på serveren, som er knyttet til brugerens session.
-10. Kig også på* DevTools | Elements* og find `<input>` med navnet: __RequestVerificationToken af typen Hidden. Denne værdi ændres for hver roundtrip.
-11. Serveren henter sin AntiforgeryToken værdi og sammenligner med den der postes og de skal være ens for at en Post metode vil eksekvere.
-13. Prøv at redigere i AntiforgeryToken i DevTools og lav en ny Withdraw. Nu kan der ikke Postes! 
+# 3. Open Redirection Attack
+- Et link modtages i en Phishing email: http://bank.com/Account/LogOn?returnUrl=http://bank.net/Account/LogOn
+- Logger ind pÃ¥ korrekt site, omdrigeres til en fake.
+- Tror han har fejlindtastet password og prÃ¸ver igen.
+- Nu er password fisket!
+- 
+Ingen demo her. Vis blot koden:
+```c#
+if(!Url.IsLocalUrl(returnUrl))
+{
+    // throw new Exception();
+}
+```
